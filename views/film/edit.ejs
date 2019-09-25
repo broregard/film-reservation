@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div class="row text-center">
+    <h2>Edit <%=film.title%></h2>
+    <div>
+        <form class="form-width" action="/film/<%=film._id%>/?_method=PUT" method="post">
+            <div class="form-group">
+                <input class="form-control top" type="text" placeholder="Title" name="film[title]" value="<%=film.title%>">
+                
+                <input class="form-control middle" type="text" placeholder="Image" name="film[image]" value="<%=film.image%>">
+                
+                <input class="form-control middle" type="text" placeholder="Youtube ID" name="film[youtube]" value="<%=film.youtube%>">
+                                
+                <input class="form-control middle" type="text" placeholder="Location" name="film[location]" value="<%=film.location%>">
+     
+                <input class="form-control middle" type="number" placeholder="Capacity" name="film[capacity]" value="<%=film.capacity%>" min="1" step="1">
+                
+                <textarea class="form-control bottom" type="text" placeholder="Info" name="film[info]"><%=film.info%></textarea>
+
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+          <a href="/film">Go back</a>
+    </div>
+</div>
+<% include ../partials/footer %>

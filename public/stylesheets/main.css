@@ -1,0 +1,98 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form {
+    display: inline;
+}
+
+.col-centered{
+float: none;
+margin: 0 auto;
+}
+
+.loginForm {
+    max-width: 330px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form-width {
+    max-width: 330px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.form-width .top {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-width .bottom {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-width .middle {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-width .form-control {
+    padding: 10px;
+    height: auto;
+}
+
+.flexAlign {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-display {
+    display:flex;
+    flex-wrap:wrap;
+    align-items: flex-end;
+}
+
+.row:before, .row:after{
+      display: none;
+}
+
+.movie-link {
+    box-shadow: 0 0 10px #ccc;
+    max-width:300px;
+    transition: .5s;
+}
+
+.movie-link:hover {
+    box-shadow: 0 0 40px 10px #bbe;
+    margin-top:-1px;
+    padding-bottom:1px;
+    transition: .5s;
+}
+
+.futura {
+    font-family: futura;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.movie-link img {
+    width: auto;
+    height:auto;
+}

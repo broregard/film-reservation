@@ -1,0 +1,105 @@
+<% include ../partials/header %>
+<header class="jumbotron">
+    <div class="container text-center">
+        <h1 class="futura">FILM FESTIVAL</h1>
+        <p style="text-align: center; letter-spacing: .33vw;">A demo for making reservations</p>
+        <% if (currentUser && currentUser.isAdmin) { %>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/film/new">Add New Film</a>
+        </p>
+       <% } %>
+    </div>
+</header>
+
+
+
+  
+
+<% if (locals.foundRes) { %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <H2 style="color:#444; font-weight:300;letter-spacing:.07vw;text-align:center;" >
+                Your reservation
+            </H2>
+            <HR>
+            <div class="flexAlign">
+                <div class="text-center">
+                    <a href="/film/<%=foundRes.id%>">
+                        <img src="<%=foundRes.image%>" class="movie-link" height="200px" style="border-radius:3px;margin:0;padding:0;">
+                    </a>
+                    <div class="visible-xs" style="margin-top:-10px;">
+                        <h3 class="bold">
+                            <%=foundRes.title%>
+                        </h3>
+                        <form id="delete-form" action="/film/<%=foundRes.id%>/reservation/<%=currentUser.reservation.id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger btn-xs">Cancel reservation</button>
+                        </form>
+                    </div>
+                </div>
+                    <div class="hidden-xs" style="margin-left:10px;">
+                        <div>
+                            <h3 class="bold">
+                                <%=foundRes.title%>
+                            </h3>
+                            <div>
+                                 <%=foundRes.info%>
+                            </div>
+                        </div>
+                        <form id="delete-form" action="/film/<%=foundRes.id%>/reservation/<%=currentUser.reservation.id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger btn-xs pull-right">Cancel reservation</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+
+<div class="well well-sm">
+        <% var notBooked = filmList.filter(film => film.reservation.length < film.capacity) %>
+        <% if (notBooked.length > 0 ) { %>
+            <H2 class="text-center" style="color:#444; font-weight:300;letter-spacing:.23vw;">available seating</H2>
+            <HR>
+            <div class="row-centered text-center flex-display">
+                <% notBooked.forEach(film => { %>
+                    <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+                        <a href="/film/<%=film._id%>" style="text-decoration:none;">
+                            <div class="thumbnail movie-link" >
+                                <img src="<%=film.image%>">
+                                <div class="caption">
+                                   <h4 class="futura" style="font-size:1em;"><%=film.title.toUpperCase()%></h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                <% }) %>
+            </div>
+        <% } %>
+
+
+        <% var fullyBooked = filmList.filter(film => film.reservation.length >= film.capacity) %>
+
+        <% if (fullyBooked.length > 0) { %>
+            <H2 class="text-center" style="color:#444; font-weight:300;letter-spacing:.23vw;">fully booked</H2><HR>
+      
+            <div class="row-centered text-center flex-display">
+                <% fullyBooked.forEach(film => { %>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <a href="/film/<%=film._id%>" style="text-decoration:none;">
+                            <div class="thumbnail movie-link" >
+                                <img src="<%=film.image%>" class="img-fluid" style="filter:grayscale(100);">
+                                <div class="caption">
+                                    <h4 class="futura"><%=film.title.toUpperCase()%></h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+
+
+<% include ../partials/footer %>

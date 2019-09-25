@@ -1,0 +1,14 @@
+<% include ./partials/header %>
+<div class="row">
+    <div class="container">
+        <form class="form-width" action="/forgot" method="POST">
+            <h2>Forgot password</h2>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email address" autofocus class="form-control">
+                <input type="submit" class="btn btn-primary btn-block" value="Send reset link">
+            </div>
+        </form>
+    </div>
+</div>
+
+<% include ./partials/footer %>

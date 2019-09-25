@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+<div class="row text-center">
+    <h1>Create a New Film</h1>
+    <div>
+        <form class="form-width" action="/film" method="POST">
+            <div class="form-group">
+                <input class="form-control top" type="text" name="title" placeholder="Movie title">
+                
+                <input class="form-control middle" type="text" name="image" placeholder="Image URL">
+                
+                <input class="form-control middle" type="text" name="youtube" placeholder="Youtube ID">
+                                
+                <input class="form-control middle" type="text" name="location" placeholder="Room location">
+     
+                <input class="form-control middle" type="number" name="capacity" placeholder="Capacity" min="1" step="1">
+                
+                <textarea class="form-control bottom" type="text" name="info" placeholder="Movie description"></textarea>
+      
+                <button class="btn btn-lg btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+          <a href="/film">Go back</a>
+    </div>
+</div>
+<% include ../partials/footer %>

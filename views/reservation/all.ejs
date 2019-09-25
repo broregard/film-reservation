@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<% var obj = {}; %>
+
+<% reservations.forEach(res => { %>
+<%    obj[res.film.title] = obj[res.film.title] || []; %>
+<%    obj[res.film.title].push(res.user.username) %>
+<% }); %>
+
+    <% for (const val in obj) { %>
+        <%-`<B>${val}</B>` %>
+       <ul>
+         <% obj[val].forEach(v => {  %>
+        <li><%= v %></li>
+         <% }) %>
+       </ul>
+    <% } %>
+
+
+
+
+
+
+<% include ../partials/footer %>

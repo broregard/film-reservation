@@ -1,0 +1,58 @@
+<% include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-3">
+        <p class="lead"><%=film.title%></p>
+        <div class="list-group text-center">
+            <li class="list-group-item"><%=film.location%></li>
+            <li class="list-group-item"><%=film.capacity - film.reservation.length%> / <%=film.capacity%> seats available</li>
+            <li class="list-group-item">
+            
+              <% var findRes = function(res){return res.id == currentUser.reservation.id;}%>
+              
+                <% if (currentUser && currentUser.reservation.id) { %> 
+                    <% if (film.reservation.find(findRes)) { %> 
+                        <form id="delete-form" action="/film/<%=film._id%>/reservation/<%=currentUser.reservation.id%>?_method=DELETE" method="POST">
+                               <button class="btn btn-danger btn-block">Cancel reservation</button>
+                        </form>
+                    <% } else if (film.reservation.length < film.capacity) { %> 
+                        <form id="delete-form" action="/film/<%=film._id%>/reservation/<%=currentUser.reservation.id%>?_method=PUT" method="POST">
+                           <button class="btn btn-info btn-block">Reserve seat</button>
+                        </form>
+                    <% } else {%>
+                    <button class="btn btn-default btn-block" disabled>Fully booked</button>
+                    <% } %>
+                    
+                <% } else { %> 
+                    <% if (film.reservation.length < film.capacity) { %>
+                    <form id="delete-form" action="/film/<%=film._id%>/reservation/" method="POST">
+                        <button class="btn btn-primary btn-block">Reserve seat</button>
+                    </form>
+                    <% } else { %>
+                    <button class="btn btn-default btn-block" disabled>Fully booked</button>
+                    <% } %> 
+                <% } %> 
+                
+            </li>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+       <div class="thumbnail">
+           <div data-type="youtube" data-video-id="<%=film.youtube%>"></div>
+           <!--<img class="img-responsive" src="<%=film.image%>" style="max-height: 400px;width:auto;">-->
+           <div class="caption-full">
+               <h4 class="pull-right">★★★★</h4>
+               <h4><%=film.title%></h4>
+               <p><%=film.info%></p>
+               <% if (currentUser && currentUser.isAdmin){ %>
+                   <a class="btn btn-warning" href="/film/<%=film._id%>/edit">Edit</a>
+                    <form id="delete-form" action="/film/<%=film._id%>?_method=DELETE" method="POST">
+                       <button class="btn btn-danger">Delete</button>
+                   </form>
+               <% } %>
+           </div>
+       </div> 
+    </div>
+</div>
+<% include ../partials/footer %>
